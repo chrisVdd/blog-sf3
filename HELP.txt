@@ -1,0 +1,24 @@
+Pour lancer le server:
+
+    >>>> php bin/console server:run
+
+Voir le listing des routes:
+
+    >>>> php bin/console debug:router
+
+Générer une entité:
+
+    >>>> php bin/console generate:doctrine:entity
+
+Mettre à jour les modifications d'une entité en DB:
+
+    >>>> php bin/console doctrine:schema:update --dump-sql
+    >>>> php bin/console doctrine:schema:update --froce
+
+CRUD sur une entité:
+
+    >>>> php bin/console generate:doctrine:crud
+
+CLEAR du cache:
+
+    >>>> php bin/console cache:clear --no-warmup

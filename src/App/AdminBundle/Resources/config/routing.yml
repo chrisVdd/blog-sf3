@@ -1,3 +1,12 @@
 app_admin_homepage:
     path:     /
     defaults: { _controller: AppAdminBundle:Default:index }
+
+app_main_post:
+    resource: "@AppAdminBundle/Controller/PostController.php"
+    type:     annotation
+
+app_admin_category:
+    resource: "@AppAdminBundle/Controller/CategoryController.php"
+    type:     annotation
+

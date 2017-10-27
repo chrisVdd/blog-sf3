@@ -37,6 +37,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'bootstrap_3_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -99,3 +101,69 @@ fos_user:
     from_email:
         address: blog@domain.be
         sender_name: user
+
+# Assetic Configuration
+assetic:
+    debug: '%kernel.debug%'
+    use_controller: false
+    bundles: []
+    filters:
+        cssrewrite: ~
+    assets:
+        bootstrap_css:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css'
+            outputs: "css/bootstrap_css"
+            filters: [cssrewrite]
+
+        bootstrap_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/button.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/collapse.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/dropdown.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/modal.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/popover.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/scrollspy.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/tooltip.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js'
+            outputs: "js/bootstrap_js"
+
+        jquery:
+            inputs:
+                - '%kernel.root_dir%/../vendor/components/jquery/jquery.slim.js'
+            outputs: "js/jquery"
+
+        fonts_glyphicons_eot:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.eot"
+            outputs: "fonts/glyphicons-halflings-regular.eot"
+
+        fonts_glyphicons_svg:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.svg"
+            outputs: "fonts/glyphicons-halflings-regular.svg"
+
+        fonts_glyphicons_ttf:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.ttf"
+            outputs: "fonts/glyphicons-halflings-regular.ttf"
+
+        fonts_glyphicons_woff:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.woff"
+            outputs: "fonts/glyphicons-halflings-regular.woff"
+
+# Vich Uploader Configuration
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        post_file:
+            uri_prefix:         /files/posts
+            upload_destination: '%kernel.root_dir%/../web/files/posts'
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true

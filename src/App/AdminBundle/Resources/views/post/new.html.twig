@@ -1,0 +1,73 @@
+{% extends 'template-admin.html.twig' %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Post create</h3>
+                </div>
+
+                {{ form_start(form) }}
+                    <div class="box-body">
+
+                        {{ form_errors(form) }}
+
+                        {% if form.date is defined %}
+                            {{ form_row(form.date) }}
+                        {% endif %}
+
+                        <div class="form-group">
+
+                            {{ form_label(form.title, "Titre du post") }}
+                            {{ form_errors(form.title) }}
+
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+
+                        <div class="form-group">
+
+                            {{ form_label(form.content, "Contenu du post") }}
+                            {{ form_errors(form.content) }}
+
+                            {{ form_widget(form.content) }}
+                        </div>
+
+                        {{ form_row(form.categories) }}
+
+                        {% if form.published is defined %}
+                            <div class="checkbox">
+                                {{ form_widget(form.published) }}
+                                {{ form_label(form.published, "Publier le post") }}
+                            </div>
+                        {% endif %}
+
+                        {#{{ form_row(form.images) }}#}
+
+                    </div>
+
+                    <div class="box-footer">
+                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-success'}}) }}
+
+                        {{ form_rest(form) }}
+
+                        <a href="{{ path('admin_post_index') }}" class="btn btn-primary">Back to the list</a>
+                    </div>
+
+                {{ form_end(form) }}
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset("assets/vendor/ckeditor/ckeditor.js") }}"></script>
+    {#<script>#}
+        {#$(function () {#}
+            {#CKEDITOR.replace('app_adminbundle_post_content')#}
+            {#$('.textarea').wysihtml5()#}
+        {#})#}
+    {#</script>#}
+{% endblock %}

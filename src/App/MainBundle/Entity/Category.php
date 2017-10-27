@@ -53,12 +53,6 @@ class Category
     private $updated;
 
     /**
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
-     */
-    private $posts;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -162,46 +156,5 @@ class Category
     public function getUpdated()
     {
         return $this->updated;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add post
-     *
-     * @param \App\MainBundle\Entity\Post $post
-     *
-     * @return Category
-     */
-    public function addPost(\App\MainBundle\Entity\Post $post)
-    {
-        $this->posts[] = $post;
-
-        return $this;
-    }
-
-    /**
-     * Remove post
-     *
-     * @param \App\MainBundle\Entity\Post $post
-     */
-    public function removePost(\App\MainBundle\Entity\Post $post)
-    {
-        $this->posts->removeElement($post);
-    }
-
-    /**
-     * Get posts
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPosts()
-    {
-        return $this->posts;
     }
 }

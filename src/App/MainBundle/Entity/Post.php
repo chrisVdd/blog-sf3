@@ -2,17 +2,17 @@
 
 namespace App\MainBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-
-use App\MainBundle\Entity\Category as Category;
-use App\MainBundle\Entity\Comment as Comment;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping                    as ORM;
+use Gedmo\Mapping\Annotation                as Gedmo;
+use Vich\UploaderBundle\Mapping\Annotation  as Vich;
 
 /**
  * Post
  *
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="App\MainBundle\Repository\PostRepository")
+ * @Vich\Uploadable
  */
 class Post
 {
@@ -62,16 +62,32 @@ class Post
     private $updated;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @var bool
+     *
+     * @ORM\Column(name="published", type="boolean")
      */
-    private $category;
+    private $published = true;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Category", cascade={"persist"})
+     * @ORM\JoinTable(name="post_category")
+     */
+    private $categories;
 
     /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
      * @ORM\OrderBy({"created" =  "DESC"})
      */
     private $comments;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories   = new ArrayCollection();
+        $this->comments     = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -202,36 +218,24 @@ class Post
     {
         return $this->updated;
     }
+
     /**
-     * Constructor
+     * Set published
+     *
+     * @param $published
      */
-    public function __construct()
+    public function setPublished($published)
     {
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->published = $published;
     }
 
     /**
-     * Set category
+     * Get published
      *
-     * @param \App\MainBundle\Entity\Category $category
-     *
-     * @return Post
      */
-    public function setCategory(\App\MainBundle\Entity\Category $category = null)
+    public function getPublished()
     {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \App\MainBundle\Entity\Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
+        return $this->published;
     }
 
     /**
@@ -266,5 +270,39 @@ class Post
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \App\MainBundle\Entity\Category $category
+     *
+     * @return Post
+     */
+    public function addCategory(\App\MainBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \App\MainBundle\Entity\Category $category
+     */
+    public function removeCategory(\App\MainBundle\Entity\Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

@@ -1,44 +1,72 @@
 {% set route = app.request.get('_route') %}
 
-<!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
-        <meta charset="UTF-8"/>
-        <title>{% block title %}Back-Office{% endblock %}</title>
-        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Welcome to this BLOG!{% endblock %}</title>
 
+    {# CSS IMPORT #}
+        {% block stylesheets %}
+            <link href="{{ asset("assets/vendor/bootstrap/dist/css/bootstrap.min.css")}}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset("assets/vendor/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset("assets/vendor/Ionicons/css/ionicons.min.css")}}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset("assets/vendor/admin-lte/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset("assets/vendor/admin-lte/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet"
+                  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
-        <div class="container">
 
-            {% block header %}{% endblock %}
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
 
-            {% block flash %}
+        {# HEADER #}
+            {{ include('@AppAdmin/include/header.html.twig') }}
 
-                {% for flashMessage in app.session.flashbag.get('notice') %}
-                    <div>
-                        {{ flashMessage }}
+        {# ASIDE #}
+            {{ include('@AppAdmin/include/main-sidebar.html.twig') }}
+
+        {# CONTENT WRAPPER #}
+            <div class="content-wrapper">
+                <section class="content">
+                    {% block page_content %}
+                    {% endblock %}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+
+                            </div>
+                        </div>
                     </div>
-                {% endfor %}
-
-                {% for flashMessage in app.session.flashbag.get('error') %}
-                    <div>
-                        {{ flashMessage }}
-                    </div>
-                {% endfor %}
-
-            {% endblock %}
-
-            <!-- container content - BEGIN -->
-            <div class="container container-content">
-                <div id="layout-view" class="view view-villa-all">
-                    {% block content %}{% endblock %}
-                </div>
+                </section>
             </div>
-            <!-- container content - END -->
 
-            {% block footer %}{% endblock footer %}
+            {# FOOTER #}
+            {{ include('@AppAdmin/include/main-footer.html.twig') }}
 
+        {# CONTROL SIDEBAR #}
+            {{ include('@AppAdmin/include/control-sidebar.html.twig') }}
         </div>
+
+{# JAVASCRIPT IMPORT #}
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset("assets/vendor/jquery/dist/jquery.min.js") }}"></script>
+            <script type="text/javascript" src="{{ asset("assets/vendor/bootstrap/dist/js/bootstrap.min.js") }}"></script>
+            <script type="text/javascript" src="{{ asset("assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js") }}"></script>
+            <script type="text/javascript" src="{{ asset("assets/vendor/fastclick/lib/fastclick.js") }}"></script>
+            <script type="text/javascript" src="{{ asset("assets/vendor/admin-lte/dist/js/adminlte.min.js") }}"></script>
+            <script type="text/javascript" src="{{ asset("assets/vendor/admin-lte/dist/js/demo.js") }}"></script>
+        {% endblock %}
+
+        <script>
+            $(document).ready(function () {
+                $('.sidebar-menu').tree()
+            })
+        </script>
     </body>
+
 </html>

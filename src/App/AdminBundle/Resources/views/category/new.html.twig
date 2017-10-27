@@ -1,0 +1,41 @@
+{% extends 'template-admin.html.twig' %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Category create</h3>
+                </div>
+
+                {{ form_start(form) }}
+                <div class="box-body">
+
+                    {{ form_errors(form) }}
+
+                    {% if form.date is defined %}
+                        {{ form_row(form.date) }}
+                    {% endif %}
+
+                    <div class="form-group">
+
+                        {{ form_label(form.name, "Nom de la catégorie") }}
+                        {{ form_errors(form.name) }}
+
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-success'}}) }}
+
+                    {{ form_rest(form) }}
+
+                    <a href="{{ path('admin_category_index') }}" class="btn btn-primary">Back to the list</a>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
