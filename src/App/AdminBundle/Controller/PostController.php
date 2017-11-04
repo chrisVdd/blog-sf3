@@ -3,7 +3,6 @@
 namespace App\AdminBundle\Controller;
 
 use App\AdminBundle\Form\PostType;
-use App\MainBundle\Entity\Image;
 use App\MainBundle\Entity\Post;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,7 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
-use App\AdminBundle\Service\FileUploader;
 
 /**
  * Post controller.
@@ -61,19 +59,6 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            /** @var UploadedFile $file */
-            $file = $post->getImage();
-
-            /** @var string $fileName */
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-            $file->move(
-                $this->getParameter('post_image_directory'),
-                $fileName
-            );
-
-            $post->setImage($fileName);
 
             /** @var EntityManager $entityManager */
             $entityManager = $this->getDoctrine()->getManager();

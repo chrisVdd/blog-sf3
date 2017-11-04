@@ -151,10 +151,10 @@ assetic:
             outputs: "fonts/glyphicons-halflings-regular.woff"
 
 # VichUploader Bundle Configuration
-#vich_uploader:
-#    db_driver: orm
-#    mappings:
-#        post_image:
-#            uri_prefix:         /post/images
-#            upload_destination: "%kernel.root_dir%/../web/post/images"
+vich_uploader:
+    db_driver: orm
+    mappings:
+        post_image:
+            uri_prefix:         /post/images
+            upload_destination: "%kernel.root_dir%/../web/post/images"
 #            namer: vich_uploader.namer_uniqid

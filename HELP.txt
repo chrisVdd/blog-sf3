@@ -23,6 +23,10 @@ CRUD sur une entité:
 
     >>>> php bin/console generate:doctrine:crud
 
+Générer un formulaire pour une entité:
+
+    >>>> php bin/console generate:doctrine:form EntityName
+
 CLEAR du cache:
 
     >>>> php bin/console cache:clear --no-warmup
@@ -34,3 +38,4 @@ Installer les assets:
 Update des assets:
 
     >>>> php bin/console assetic:dump
+

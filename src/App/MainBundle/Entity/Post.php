@@ -80,16 +80,9 @@ class Post
     private $comments;
 
     /**
-     * @ORM\Column(name="image", type="string")
+     * @ORM\OneToMany(targetEntity="PostImage", mappedBy="post", cascade={"persist", "remove"})
      */
-    private $image;
-
-//    /**
-//     * @var string
-//     *
-//     * @ORM\OneToMany(targetEntity="App\MainBundle\Entity\Image", mappedBy="post")
-//     */
-//    private $images;
+    private $images;
 
     /**
      * Constructor
@@ -98,7 +91,7 @@ class Post
     {
         $this->categories   = new ArrayCollection();
         $this->comments     = new ArrayCollection();
-//        $this->images       = new ArrayCollection();
+        $this->images       = new ArrayCollection();
     }
 
     /**
@@ -318,57 +311,39 @@ class Post
         return $this->categories;
     }
 
-//    /**
-//     * Get images
-//     *
-//     * @return \Doctrine\Common\Collections\Collection
-//     */
-//    public function getImages()
-//    {
-//        return $this->categories;
-//    }
-//
-//    /**
-//     * @param Image $image
-//     */
-//    public function addImage(Image $image)
-//    {
-//        $this->images[] = $image;
-//
-//        $image->setPost($this);
-//    }
-//
-//    /**
-//     * @param Image $image
-//     */
-//    public function removeImage(Image $image)
-//    {
-//        $this->images->removeElement($image);
-//    }
-
-
-
     /**
-     * Set image
+     * Add image
      *
-     * @param string $image
+     * @param PostImage $image
      *
      * @return Post
      */
-    public function setImage($image)
+    public function addImage(PostImage $image)
     {
-        $this->image = $image;
+        $this->images->add($image);
+
+        $image->setPost($this);
 
         return $this;
     }
 
     /**
-     * Get image
+     * Remove image
      *
-     * @return string
+     * @param PostImage $image
      */
-    public function getImage()
+    public function removeImage(PostImage $image)
     {
-        return $this->image;
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

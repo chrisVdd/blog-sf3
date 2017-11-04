@@ -1,5 +1,1 @@
 services:
-
-    App\AdminBundle\Service\FileUploader:
-        arguments:
-            $targetDirectory: "%post_image_directory%"
