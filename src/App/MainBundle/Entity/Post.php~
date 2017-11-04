@@ -2,20 +2,16 @@
 
 namespace App\MainBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping                    as ORM;
 use Gedmo\Mapping\Annotation                as Gedmo;
-use Vich\UploaderBundle\Mapping\Annotation  as Vich;
-use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Post
  *
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="App\MainBundle\Repository\PostRepository")
- * @Vich\Uploadable
+ * @ORM\HasLifecycleCallbacks
  */
 class Post
 {
@@ -84,12 +80,25 @@ class Post
     private $comments;
 
     /**
+     * @ORM\Column(name="image", type="string")
+     */
+    private $image;
+
+//    /**
+//     * @var string
+//     *
+//     * @ORM\OneToMany(targetEntity="App\MainBundle\Entity\Image", mappedBy="post")
+//     */
+//    private $images;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->categories   = new ArrayCollection();
         $this->comments     = new ArrayCollection();
+//        $this->images       = new ArrayCollection();
     }
 
     /**
@@ -244,11 +253,11 @@ class Post
     /**
      * Add comment
      *
-     * @param \App\MainBundle\Entity\Comment $comment
+     * @param Comment $comment
      *
      * @return Post
      */
-    public function addComment(\App\MainBundle\Entity\Comment $comment)
+    public function addComment(Comment $comment)
     {
         $this->comments[] = $comment;
 
@@ -258,9 +267,9 @@ class Post
     /**
      * Remove comment
      *
-     * @param \App\MainBundle\Entity\Comment $comment
+     * @param Comment $comment
      */
-    public function removeComment(\App\MainBundle\Entity\Comment $comment)
+    public function removeComment(Comment $comment)
     {
         $this->comments->removeElement($comment);
     }
@@ -278,11 +287,11 @@ class Post
     /**
      * Add category
      *
-     * @param \App\MainBundle\Entity\Category $category
+     * @param Category $category
      *
      * @return Post
      */
-    public function addCategory(\App\MainBundle\Entity\Category $category)
+    public function addCategory(Category $category)
     {
         $this->categories[] = $category;
 
@@ -292,9 +301,9 @@ class Post
     /**
      * Remove category
      *
-     * @param \App\MainBundle\Entity\Category $category
+     * @param Category $category
      */
-    public function removeCategory(\App\MainBundle\Entity\Category $category)
+    public function removeCategory(Category $category)
     {
         $this->categories->removeElement($category);
     }
@@ -308,4 +317,34 @@ class Post
     {
         return $this->categories;
     }
+
+//    /**
+//     * Get images
+//     *
+//     * @return \Doctrine\Common\Collections\Collection
+//     */
+//    public function getImages()
+//    {
+//        return $this->categories;
+//    }
+//
+//    /**
+//     * @param Image $image
+//     */
+//    public function addImage(Image $image)
+//    {
+//        $this->images[] = $image;
+//
+//        $image->setPost($this);
+//    }
+//
+//    /**
+//     * @param Image $image
+//     */
+//    public function removeImage(Image $image)
+//    {
+//        $this->images->removeElement($image);
+//    }
+
+
 }

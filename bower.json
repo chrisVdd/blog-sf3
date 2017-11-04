@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "authors": [
+    "chrisVdd <christina.vandd@gmail.com>"
+  ],
+  "description": "blog for basic dev with symfony 3",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "web/assets/vendor"
+  ],
+  "dependencies": {
+    "admin-lte": "latest"
+  },
+  "resolutions": {
+    "jquery": ">=1.7"
+  }
+}

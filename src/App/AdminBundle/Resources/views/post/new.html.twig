@@ -33,7 +33,21 @@
                             {{ form_widget(form.content) }}
                         </div>
 
-                        {{ form_row(form.categories) }}
+                        <div class="form-group">
+
+                            {{ form_label(form.categories, "Catégorie(s)") }}
+                            {{ form_errors(form.categories) }}
+
+                            {{ form_widget(form.categories) }}
+                        </div>
+
+                        <div class="form-group">
+
+                            {{ form_label(form.image, "Image") }}
+                            {{ form_errors(form.image) }}
+
+                            {{ form_widget(form.image) }}
+                        </div>
 
                         {% if form.published is defined %}
                             <div class="checkbox">
@@ -41,9 +55,6 @@
                                 {{ form_label(form.published, "Publier le post") }}
                             </div>
                         {% endif %}
-
-                        {#{{ form_row(form.images) }}#}
-
                     </div>
 
                     <div class="box-footer">
@@ -55,15 +66,19 @@
                     </div>
 
                 {{ form_end(form) }}
-
-
             </div>
         </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
+
+
     <script type="text/javascript" src="{{ asset("assets/vendor/ckeditor/ckeditor.js") }}"></script>
+
+
+
+
     {#<script>#}
         {#$(function () {#}
             {#CKEDITOR.replace('app_adminbundle_post_content')#}

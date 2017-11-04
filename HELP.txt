@@ -10,10 +10,14 @@ Générer une entité:
 
     >>>> php bin/console generate:doctrine:entity
 
+Générer les GETTERS et SETTERS
+
+    >>>> php bin/console generate:doctrine:entities EntityName
+
 Mettre à jour les modifications d'une entité en DB:
 
     >>>> php bin/console doctrine:schema:update --dump-sql
-    >>>> php bin/console doctrine:schema:update --froce
+    >>>> php bin/console doctrine:schema:update --force
 
 CRUD sur une entité:
 
@@ -22,3 +26,11 @@ CRUD sur une entité:
 CLEAR du cache:
 
     >>>> php bin/console cache:clear --no-warmup
+
+Installer les assets:
+
+    >>>> php bin/console assets:install --symlink
+
+Update des assets:
+
+    >>>> php bin/console assetic:dump

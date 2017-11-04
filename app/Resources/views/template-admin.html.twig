@@ -14,6 +14,7 @@
             <link href="{{ asset("assets/vendor/Ionicons/css/ionicons.min.css")}}" rel="stylesheet" type="text/css" />
             <link href="{{ asset("assets/vendor/admin-lte/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
             <link href="{{ asset("assets/vendor/admin-lte/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset("assets/vendor/dropzone/dropzone.css")}}" rel="stylesheet" type="text/css" />
             <link rel="stylesheet"
                   href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         {% endblock %}
@@ -52,7 +53,7 @@
             {{ include('@AppAdmin/include/control-sidebar.html.twig') }}
         </div>
 
-{# JAVASCRIPT IMPORT #}
+    {# JAVASCRIPT IMPORT #}
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset("assets/vendor/jquery/dist/jquery.min.js") }}"></script>
             <script type="text/javascript" src="{{ asset("assets/vendor/bootstrap/dist/js/bootstrap.min.js") }}"></script>
@@ -60,13 +61,15 @@
             <script type="text/javascript" src="{{ asset("assets/vendor/fastclick/lib/fastclick.js") }}"></script>
             <script type="text/javascript" src="{{ asset("assets/vendor/admin-lte/dist/js/adminlte.min.js") }}"></script>
             <script type="text/javascript" src="{{ asset("assets/vendor/admin-lte/dist/js/demo.js") }}"></script>
+            <script type="text/javascript" src="{{ asset("assets/vendor/dropzone/dropzone.js") }}"></script>
+
+            <script>
+                $(document).ready(function () {
+                    $('.sidebar-menu').tree()
+                })
+            </script>
         {% endblock %}
 
-        <script>
-            $(document).ready(function () {
-                $('.sidebar-menu').tree()
-            })
-        </script>
-    </body>
 
+    </body>
 </html>

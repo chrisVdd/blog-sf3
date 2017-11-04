@@ -10,3 +10,7 @@ app_admin_category:
     resource: "@AppAdminBundle/Controller/CategoryController.php"
     type:     annotation
 
+app_admin_image:
+    resource:   "@AppAdminBundle/Controller/ImageController.php"
+    type:       annotation
+

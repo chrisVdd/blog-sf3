@@ -6,10 +6,6 @@ app_admin:
     resource: "@AppAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
 
-#app_main:
-#    resource: "@AppMainBundle/Resources/config/routing.yml"
-#    prefix:   /
-
 # FOSUSer Routing
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -30,6 +26,6 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
-# LIIP Imagine Routing
-_liip_imagine:
-    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+#app_main:
+#    resource: "@AppMainBundle/Resources/config/routing.yml"
+#    prefix:   /

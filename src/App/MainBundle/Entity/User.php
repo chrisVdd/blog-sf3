@@ -2,9 +2,9 @@
 
 namespace App\MainBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
-use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping        as ORM;
+use Gedmo\Mapping\Annotation    as Gedmo;
+use FOS\UserBundle\Model\User   as BaseUser;
 
 /**
  * User

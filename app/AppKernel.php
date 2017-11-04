@@ -25,8 +25,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Liip\ImagineBundle\LiipImagineBundle(),
-            new Vich\UploaderBundle\VichUploaderBundle()
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

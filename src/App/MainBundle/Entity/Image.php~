@@ -1,0 +1,60 @@
+<?php
+
+namespace App\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping        as ORM;
+use Gedmo\Mapping\Annotation    as Gedmo;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+/**
+ * Image
+ *
+ * @ORM\Table(name="image")
+ * @ORM\Entity(repositoryClass="App\MainBundle\Repository\ImageRepository")
+ */
+class Image
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var UploadedFile
+     */
+    private $file;
+
+    /**
+     * @var string
+     */
+    private $tempFilename;
+
+    /**
+     * @var Post
+     *
+     * @ORM\ManyToOne(targetEntity="App\MainBundle\Entity\Post", inversedBy="images")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $post;
+
+    /**
+     * @var \DateTime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
+
+}

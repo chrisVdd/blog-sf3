@@ -1,0 +1,49 @@
+PAGES:
+
+    - slider
+    - module réseaux sociaux
+    - petite présentation de (page content)
+    - les dernières news (3)
+
+NEWS:
+
+    - news de catégories candidats
+    - ajouter une / des images pour agrémenter le contenu
+    - ajouer des images via files > slider 
+
+CANDIDATS:
+
+    -> devient notre équipe
+
+    - nom + prénom
+    - photo
+    - description
+    - age
+    - centres d'intérêts
+    - téléphone
+    - email
+    - "slogan"
+
+commentaires:
+
+    - notification par email vers l'admin
+
+    - adresse email
+    - message
+
+RESEAUX SOCIAUX:
+
+    - Facebook
+
+NOTRE PROGRAMME:
+
+    -- ce sera la page content
+
+A propos
+
+    -- ce sera la page content
+
+
+
+Je pense que le "collectionTYpe" ne correspond pas à ce que je veux.
+En fait, avec ça, il faudrait déjà avoir des images > et là je pourrais choisir
